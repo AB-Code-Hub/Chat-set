@@ -7,7 +7,8 @@ import LoginPage from "./pages/LoginPage";
 import SettingsPage from "./pages/SettingsPage";
 import ProfilePage from "./pages/ProfilePage";
 import { axiosInstance } from "./lib/axios.js";
-import { useAuthStore } from "./store/useAuthStore";
+import { useAuthStore } from "./store/useAuthStore.js";
+import {Toaster} from 'react-hot-toast'
 
 import { Loader } from "lucide-react";
 
@@ -27,6 +28,7 @@ return (
   }
   return (
     <div>
+      <Toaster />
       <Navbar />
       <Routes>
         <Route path="/" element={ authUser ? <HomePage /> :   <Navigate to="/login"/> } />
