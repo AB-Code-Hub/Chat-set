@@ -7,7 +7,7 @@ export const useAuthStore = create((set) => ({
     isCheckingAuth: true,
     isSigningUp: false,
     isLoggingIn: false,
-    isUpdateingProfile: false,
+    isUpdatingProfile: false,
 
     checkAuth: async () => {
         try {
@@ -65,6 +65,22 @@ export const useAuthStore = create((set) => ({
         toast.error(error.response.data.message)
         console.error("Error in logout:", error)
       }  
+    },
+
+    updateProfile: async (data) => {
+        set({isUpdatingProfile: true})
+        try {
+            const response = await axiosInstance.put('/auth/update-profile', data)    
+            set({authUser: response.data})
+            toast.success("Profile updated successfully")
+        } catch (error) {
+            toast.error(error.response.data.message)
+            console.error("Error in updateProfile:", error)
+        }
+
+        finally{
+            set({isUpdatingProfile: false})
+        }
     }
 
 
