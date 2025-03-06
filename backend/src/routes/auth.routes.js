@@ -14,7 +14,7 @@ router.post("/signup", signup);
 
 router.post("/login", login);
 
-router.post("/logout", logout);
+router.post("/logout", protecteRoute,  logout);
 
 router.put("/update-profile", protecteRoute, updateProfile);
 
