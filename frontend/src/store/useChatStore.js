@@ -13,10 +13,8 @@ export const useChatStore = create((set) => ({
     set({ isUserLoading: true });
 
     try {
-      
       const res = await axiosInstance.get("/message/users");
       set({ users: res.data.data });
-      
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -36,5 +34,5 @@ export const useChatStore = create((set) => ({
     }
   },
 
-  setSelectedUser: (selectedUser) => ({ selectedUser}),    
+  setSelectedUser: (selectedUser) => set({ selectedUser }),
 }));
