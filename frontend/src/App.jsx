@@ -21,7 +21,6 @@ const App = () => {
   }, [checkAuth]);
 
   useEffect(() => {
-    // Apply the theme to the <html> element
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
@@ -33,7 +32,7 @@ const App = () => {
     );
   }
   return (
-    <div  className="h-full">
+    <div className="h-full">
       <Navbar />
       <Routes>
         <Route
