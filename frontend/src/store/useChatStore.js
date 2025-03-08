@@ -46,4 +46,8 @@ export const useChatStore = create((set, get) => ({
   },
 
   setSelectedUser: (selectedUser) => set({ selectedUser }),
+
+  resetChatState: () => {
+    set({ messages: [], selectedUser: null }); // Reset messages and selected user
+  },
 }));

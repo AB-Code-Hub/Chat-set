@@ -13,8 +13,10 @@ import { Loader } from "lucide-react";
 import { useThemeStore } from "./store/useThemeStore.js";
 
 const App = () => {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers, connectSocket } = useAuthStore();
   const { theme } = useThemeStore();
+
+  console.log(onlineUsers)
 
   useEffect(() => {
     checkAuth();
@@ -23,6 +25,12 @@ const App = () => {
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
+
+  useEffect(() => {
+    if (authUser) {
+      connectSocket();
+    }
+  }, [authUser, connectSocket]);
 
   if (isCheckingAuth && !authUser) {
     return (

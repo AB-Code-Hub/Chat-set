@@ -24,7 +24,6 @@ const ChatContainer = () => {
       </div>
     );
 
-    console.log(messages);
     
 
   return (
