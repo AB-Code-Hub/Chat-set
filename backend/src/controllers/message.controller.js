@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import Message from "../models/message.model.js";
 import { v2 as cloudinary } from "cloudinary";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 export const getUsersForSidebar = async (req, res) => {
   try {
     const loggedInUserId = req.user._id;
@@ -57,6 +58,10 @@ export const sendMessage = async (req, res) => {
 
     await newMessage.save();
 
+      const reciverSocketId = getReceiverSocketId(reciverId)
+      if(reciverSocketId){
+        io.to(reciverSocketId).emit("newMessage", newMessage)
+      }
     //todo:  realtime  functionality goes here using  socket.io
 
     res.status(201).json(newMessage);
